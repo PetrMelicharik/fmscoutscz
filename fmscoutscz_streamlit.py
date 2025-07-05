@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 
 st.title("FM Scouts cz")
+st.subheader("Databáze hráčů:")
 
 players = pd.read_excel("players.xlsx")
 profiles = pd.read_excel("players_profiles.xlsx")
