@@ -13,4 +13,4 @@ shortlist2 = pd.merge(shortlist, ratings, on = "id")
 database = pd.merge(shortlist2, stats, on="id")
 
 main_page_db = database[["id", "Jméno", "Příjmení", "team", "Pozice", "nationality", "birth_year", "market_value", "contract_until", "Transfermarkt", "Sofascore"]]
-main_page_db.set_index("id", inplace=True)
+main_page_db
