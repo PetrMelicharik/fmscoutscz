@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 
+st.image("logo.jpg", width=150)
 st.title("FM Scouts cz")
 st.subheader("Databáze hráčů:")
 
