@@ -20,14 +20,25 @@ shortlist = pd.merge(players, profiles, on="id")
 shortlist2 = pd.merge(shortlist, ratings, on = "id")
 database = pd.merge(shortlist2, stats, on="id")
 
+# filtrování
+pozice = st.multiselect("Vyber pozici:", options=database["Pozice"].unique())
+narodnost = st.multiselect("Vyber národnost:", options=database["nationality"].unique())
+team = st.multiselect("Vyber tým:", options=database["team"].dropna().unique())
+liga = st.multiselect("Vyber ligu:", options=database["tournament_country"].unique())
+
+# Aplikace filtrů
+filtered_db = database.copy()
+
+if pozice:
+    filtered_db = filtered_db[filtered_db["Pozice"].isin(pozice)]
+if narodnost:
+    filtered_db = filtered_db[filtered_db["nationality"].isin(narodnost)]
+if team:
+    filtered_db = filtered_db[filtered_db["team"].isin(team)]
+if liga:
+    filtered_db = filtered_db[filtered_db["tournament_country"].isin(liga)]
+
+
 # zobrazení databáze na stránce
-main_page_db = database[["id", "Jméno", "Příjmení", "team", "Pozice", "nationality", "birth_year", "market_value", "contract_until", "Transfermarkt", "Sofascore"]]
-
-# vyhledávání hráče podle jména
-search_name = st.text_input("Hledat hráče podle příjmení")
-
-if search_name:
-    filtered_db = main_page_db[main_page_db["Příjmení"].str.contains(search_name, case=False, na=False)]
-    st.dataframe(filtered_db)
-else:
-    st.dataframe(main_page_db)
+st.dataframe(
+    filtered_db[["id", "Jméno", "Příjmení", "Pozice", "nationality", "birth_year", "team", "tournament_country", "market_value", "contract_until", "Transfermarkt", "Sofascore"]])
