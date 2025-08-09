@@ -1,0 +1,14 @@
+name: Keep Streamlit App Alive
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"  # každých 30 minut
+  workflow_dispatch:        # možnost spustit ručně
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Streamlit App
+        run: |
+          curl -s https://fmscoutscz.streamlit.app > /dev/null
