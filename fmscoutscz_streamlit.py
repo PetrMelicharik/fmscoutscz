@@ -23,8 +23,8 @@ database = pd.merge(shortlist2, stats, on="id")
 # filtrování
 pozice = st.multiselect("Vyber pozici:", options=database["Pozice"].unique())
 narodnost = st.multiselect("Vyber národnost:", options=database["nationality"].unique())
-team = st.multiselect("Vyber tým:", options=database["team"].dropna().unique())
 liga = st.multiselect("Vyber ligu:", options=database["tournament_country"].unique())
+team = st.multiselect("Vyber tým:", options=database["team"].dropna().unique())
 
 # Aplikace filtrů
 filtered_db = database.copy()
@@ -34,9 +34,9 @@ if pozice:
 if narodnost:
     filtered_db = filtered_db[filtered_db["nationality"].isin(narodnost)]
 if team:
-    filtered_db = filtered_db[filtered_db["team"].isin(team)]
-if liga:
     filtered_db = filtered_db[filtered_db["tournament_country"].isin(liga)]
+if liga:
+    filtered_db = filtered_db[filtered_db["team"].isin(team)]
 
 
 # zobrazení databáze na stránce
