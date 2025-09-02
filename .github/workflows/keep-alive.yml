@@ -2,13 +2,13 @@ name: Keep Streamlit App Alive
 
 on:
   schedule:
-    - cron: "*/10 * * * *"  # každých 30 minut
+    - cron: "*/30 * * * *"  # každých 30 minut
   workflow_dispatch:
 
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Keep Streamlit App Alive
+      - name: Ping Streamlit App
         run: |
-          curl -s -o /dev/null -w "%{http_code}" -L "https://fmscoutscz-streamlit.streamlit.app"
+          wget --quiet --tries=3 --timeout=10 -O /dev/null "https://fmscoutscz-streamlit.streamlit.app"
