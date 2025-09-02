@@ -11,4 +11,4 @@ jobs:
     steps:
       - name: Ping Streamlit App
         run: |
-          wget --quiet --tries=3 --timeout=10 -O /dev/null "https://fmscoutscz-streamlit.streamlit.app"
+          wget --quiet --tries=3 --timeout=10 -O /dev/null "https://fmscoutscz-streamlit.streamlit.app" || true
