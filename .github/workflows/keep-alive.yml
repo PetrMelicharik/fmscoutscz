@@ -1,52 +1,14 @@
-name: Keep Streamlit awake
+name: Keep Streamlit App Alive
 
 on:
   schedule:
-    - cron: "*/10 * * * *"   # každých 10 min (UTC)
-  workflow_dispatch:         # ruční spuštění z Actions záložky
-
-permissions:
-  contents: read
-
-concurrency:
-  group: keep-alive
-  cancel-in-progress: true
+    - cron: "*/10 * * * *"  # každých 30 minut
+  workflow_dispatch:
 
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping Streamlit app
-        env:
-          APP_URL: "https://fmscoutscz.streamlit.app/"  # ← sem dej přesnou URL
-          UA: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125 Safari/537.36"
+      - name: Keep Streamlit App Alive
         run: |
-          set -e
-
-          echo "Pinging: $APP_URL"
-
-          # 1) HEAD pro warmup DNS + následování redirectů
-          curl -I -L --retry 5 --retry-all-errors --max-time 60 \
-               -A "$UA" "$APP_URL"
-
-          # 2) GET těla stránky
-          BODY=$(curl -sS -L --retry 5 --retry-all-errors --max-time 120 \
-                    -A "$UA" "${APP_URL}?t=$(date +%s)")
-
-          echo "First 20 lines of response:"
-          echo "$BODY" | head -n 20
-
-          # 3) Pokud je to spánková stránka (obsahuje 'Zzzz'), zkus „probudit“
-          if echo "$BODY" | grep -qi "Zzzz"; then
-            echo "App looks asleep; trying to wake it..."
-            sleep 5
-            BODY=$(curl -sS -L --retry 5 --retry-all-errors --max-time 120 \
-                      -A "$UA" "${APP_URL}?wake=$(date +%s)")
-            echo "$BODY" | head -n 20
-            if echo "$BODY" | grep -qi "Zzzz"; then
-              echo "Still asleep after wake attempt."
-              exit 1
-            fi
-          fi
-
-          echo "App responded and appears awake ✅"
+          curl -s -o /dev/null -w "%{http_code}" -L "https://fmscoutscz-streamlit.streamlit.app"
