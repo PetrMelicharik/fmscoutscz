@@ -34,9 +34,10 @@ if pozice:
 if narodnost:
     filtered_db = filtered_db[filtered_db["nationality"].isin(narodnost)]
 if team:
-    filtered_db = filtered_db[filtered_db["tournament_country"].isin(liga)]
-if liga:
     filtered_db = filtered_db[filtered_db["team"].isin(team)]
+if liga:
+    filtered_db = filtered_db[filtered_db["tournament_country"].isin(liga)]
+
 
 
 # zobrazení databáze na stránce
