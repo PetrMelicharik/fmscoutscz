@@ -39,8 +39,6 @@ if team:
     filtered_db = filtered_db[filtered_db["team"].isin(team)]
 
 
-
-
 # zobrazení databáze na stránce
 st.dataframe(
     filtered_db[["id", "Jméno", "Příjmení", "Pozice", "nationality", "birth_year", "team", "tournament_country", "market_value", "contract_until", "Transfermarkt", "Sofascore"]])
