@@ -25,6 +25,7 @@ pozice = st.multiselect("Vyber pozici:", options=database["Pozice"].unique())
 narodnost = st.multiselect("Vyber národnost:", options=database["nationality"].unique())
 liga = st.multiselect("Vyber ligu:", options=database["tournament_country"].unique())
 team = st.multiselect("Vyber tým:", options=database["team"].dropna().unique())
+contract = st.multiselect("Vyber délku smlouvy:", options=database["contract_until"].dropna().unique())
 
 # Aplikace filtrů
 filtered_db = database.copy()
@@ -37,6 +38,8 @@ if liga:
     filtered_db = filtered_db[filtered_db["tournament_country"].isin(liga)]
 if team:
     filtered_db = filtered_db[filtered_db["team"].isin(team)]
+if contract:
+    filtered_db = filtered_db[filtered_db["contract_until"].isin(contract)]
 
 
 # zobrazení databáze na stránce
