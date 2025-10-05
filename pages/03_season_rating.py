@@ -22,4 +22,4 @@ database = pd.merge(shortlist2, stats, on="id")
 
 # zobrazení top 50 ratingů
 season = database[["Jméno", "Příjmení", "team", "Pozice", "rating", "Sofascore"]].sort_values("rating", ascending=False)
-st.dataframe(season.head(50))
+st.dataframe(season.head(70))
