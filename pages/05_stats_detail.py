@@ -116,7 +116,7 @@ if search_name:
 
             pizza_labels = [
                 "Přesné přihrávky %", "Úspěšné driblinky %", "Přesné centry %",
-                "Vyhrané hlavičky %", "Vyhrané souboje %", "Konverze střel %",
+                "Vyhrané hlavičky %", "Vyhrané souboje %", "Úspěšnost střel %",
                 "Přesné dlouhé míče %", "Vyhrané pozemní souboje %"
             ]
 
