@@ -21,11 +21,11 @@ shortlist2 = pd.merge(shortlist, ratings, on = "id")
 database = pd.merge(shortlist2, stats, on="id")
 
 # filtrování
-pozice = st.multiselect("Vyber pozici:", options=database["Pozice"].unique())
-narodnost = st.multiselect("Vyber národnost:", options=database["nationality"].unique())
-liga = st.multiselect("Vyber ligu:", options=database["tournament_country"].unique())
-team = st.multiselect("Vyber tým:", options=database["team"].dropna().unique())
-contract = st.multiselect("Vyber délku smlouvy:", options=database["contract_until"].dropna().unique())
+pozice = st.multiselect("Vyber pozici:", options=sorted(database["Pozice"].dropna().astype(str).unique()))
+narodnost = st.multiselect("Vyber národnost:", options=sorted(database["nationality"].dropna().astype(str).unique()))
+liga = st.multiselect("Vyber ligu:", options=sorted(database["tournament_country"].dropna().astype(str).unique()))
+team = st.multiselect("Vyber tým:", options=sorted(database["team"].dropna().dropna().astype(str).unique()))
+contract = st.multiselect("Vyber délku smlouvy:", options=sorted(database["contract_until"].dropna().dropna().unique()))
 
 # Aplikace filtrů
 filtered_db = database.copy()
