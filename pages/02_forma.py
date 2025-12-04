@@ -19,6 +19,6 @@ shortlist = pd.merge(players, profiles, on="id")
 shortlist2 = pd.merge(shortlist, ratings, on="id")
 database = pd.merge(shortlist2, stats, on="id")
 
-# zobrazení top 50 ratingů 
+# zobrazení top 60 ratingů 
 form = database[["Jméno", "Příjmení", "team", "Pozice", "avg_rating", "Sofascore"]].sort_values("avg_rating", ascending=False) st.dataframe(form.head(60))
-form
+st.dataframe(form.head(60))
