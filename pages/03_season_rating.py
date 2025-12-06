@@ -20,6 +20,9 @@ shortlist = pd.merge(players, profiles, on="id")
 shortlist2 = pd.merge(shortlist, ratings, on = "id")
 database = pd.merge(shortlist2, stats, on="id")
 
+# zaokrouhlení ratingu na 1 desetinu
+database["rating"] = pd.to_numeric(database["rating"], errors="coerce").round(1)
+
 # zobrazení top 50 ratingů
 season = database[["Jméno", "Příjmení", "team", "Pozice", "rating", "Sofascore"]].sort_values("rating", ascending=False)
 st.dataframe(season.head(70))
