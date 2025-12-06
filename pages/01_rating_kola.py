@@ -8,7 +8,7 @@ st.set_page_config(page_title="FM Scouts CZ - ratings", page_icon="⚽")
 # záhlaví stránky
 st.image("logo.jpg", width=150)
 st.title("FM Scouts cz")
-st.subheader("Nejlepší ratingy kola - TOP50:")
+st.subheader("Nejlepší ratingy kola - TOP30:")
 
 # načtení excel souborů
 players = pd.read_excel("players.xlsx")
