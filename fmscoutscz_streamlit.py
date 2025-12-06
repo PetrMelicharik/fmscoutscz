@@ -24,7 +24,6 @@ database = pd.merge(shortlist2, stats, on="id")
 pozice = st.multiselect("Vyber pozici:", options=sorted(database["Pozice"].dropna().astype(str).unique()))
 narodnost = st.multiselect("Vyber národnost:", options=sorted(database["nationality"].dropna().astype(str).unique()))
 liga = st.multiselect("Vyber ligu:", options=sorted(database["tournament_country"].dropna().astype(str).unique()))
-team = st.multiselect("Vyber tým:", options=sorted(database["team"].dropna().dropna().astype(str).unique()))
 contract = st.multiselect("Vyber délku smlouvy:", options=sorted(database["contract_until"].dropna().dropna().unique()))
 
 # Aplikace filtrů
@@ -36,8 +35,6 @@ if narodnost:
     filtered_db = filtered_db[filtered_db["nationality"].isin(narodnost)]
 if liga:
     filtered_db = filtered_db[filtered_db["tournament_country"].isin(liga)]
-if team:
-    filtered_db = filtered_db[filtered_db["team"].isin(team)]
 if contract:
     filtered_db = filtered_db[filtered_db["contract_until"].isin(contract)]
 
