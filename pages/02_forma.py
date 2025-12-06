@@ -4,7 +4,7 @@ import pandas as pd
 # nastavení stránky
 st.set_page_config(page_title="FM Scouts CZ - forma", page_icon="⚽")
 
-st.image("logo.jpg", width=150)
+st.image("logo.jpg", width=100)
 st.title("FM Scouts cz")
 st.subheader("Aktuální forma - TOP50:")
 

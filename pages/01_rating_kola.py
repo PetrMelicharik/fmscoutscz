@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 st.set_page_config(page_title="FM Scouts CZ - ratings", page_icon="⚽")
 
 # záhlaví stránky
-st.image("logo.jpg", width=150)
+st.image("logo.jpg", width=100)
 st.title("FM Scouts cz")
 st.subheader("Nejlepší ratingy kola - TOP30:")
 

@@ -8,7 +8,7 @@ from math import pi
 st.set_page_config(page_title="FM Scouts CZ - Detail hráče", page_icon="⚽")
 
 # --- Záhlaví ---
-st.image("logo.jpg", width=150)
+st.image("logo.jpg", width=100)
 st.title("FM Scouts CZ")
 st.subheader("Detail hráče")
 
