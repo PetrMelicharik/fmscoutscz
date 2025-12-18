@@ -171,3 +171,5 @@ if search_name:
 
     else:
         st.warning("❌ Hráč nenalezen. Zkus jiné jméno.")
+
+
